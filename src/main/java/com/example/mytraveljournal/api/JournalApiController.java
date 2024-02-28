@@ -1,9 +1,8 @@
-package com.example.mytraveljournal.controller;
+package com.example.mytraveljournal.api;
 
 import com.example.mytraveljournal.dto.JournalDto;
 import com.example.mytraveljournal.entity.Journal;
 import com.example.mytraveljournal.service.JournalService;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-public class JournalController {
+public class JournalApiController {
 
     @Autowired
     private JournalService journalService; // 서비스 객체 주입

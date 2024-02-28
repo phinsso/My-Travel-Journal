@@ -36,4 +36,19 @@ public class Journal {
     @Column
     private byte[] image; // 이미지
 
+    // 일부 데이터 수정 시, 기존 데이터가 날아가는 현상을 방지하기 위한 메서드
+    public void patch(Journal journal) {
+        if(journal.title != null)
+            this.title = journal.title;
+        if(journal.place != null)
+            this.place = journal.place;
+        if(journal.startDate != null)
+            this.startDate = journal.startDate;
+        if(journal.endDate != null)
+            this.endDate = journal.endDate;
+        if(journal.content != null)
+            this.content = journal.content;
+        if(journal.image != null)
+            this.image = journal.image;
+    }
 }

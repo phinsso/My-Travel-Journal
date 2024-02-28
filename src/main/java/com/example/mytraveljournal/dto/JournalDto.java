@@ -1,5 +1,6 @@
 package com.example.mytraveljournal.dto;
 
+import com.example.mytraveljournal.entity.Journal;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
@@ -16,4 +17,8 @@ public class JournalDto {
     private LocalDate endDate;
     private String content;
     private byte[] image;
+
+    public Journal toEntity() {
+        return new Journal(id, title, place, startDate, endDate, content, image);
+    }
 }
