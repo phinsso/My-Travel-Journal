@@ -2,11 +2,13 @@ package com.example.mytraveljournal.dto;
 
 import com.example.mytraveljournal.entity.Journal;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class JournalDto {
 

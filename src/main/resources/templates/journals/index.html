@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Travel Journals</title>
+</head>
+<body>
+
+<h1>My Travel Journals</h1>
+
+<div th:if="${not #lists.isEmpty(journals)}">
+    <div th:each="journal : ${journals}">
+        <div>
+            <h2 th:text="${journal.title}"></h2>
+            <p th:text="${journal.content}"></p>
+            <a th:href="@{'/journals/' + ${journal.id}}">View Details</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
