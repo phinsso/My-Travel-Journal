@@ -1,15 +1,18 @@
 package com.example.mytraveljournal.dto;
 
 import com.example.mytraveljournal.entity.Journal;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.websocket.server.ServerEndpoint;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Getter
+@Setter
 public class JournalDto {
 
     private Long id;
@@ -18,9 +21,8 @@ public class JournalDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private String content;
-    private byte[] image;
 
     public Journal toEntity() {
-        return new Journal(id, title, place, startDate, endDate, content, image);
+        return new Journal(null, title, place, startDate, endDate, content);
     }
 }

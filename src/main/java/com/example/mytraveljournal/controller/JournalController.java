@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class JournalController {
     @Autowired
     private JournalService journalService;
 
-    // 메인화면 (일지 목록)
+    // 메인화면 (전체 일지 조회)
     @GetMapping("/journals")
     public String showJournalList(Model model) {
         List<Journal> journals = journalService.findAllJournals();
@@ -29,7 +30,7 @@ public class JournalController {
         return "journals/index";
     }
 
-    // 일지 상세 보기 화면
+    // 일지 상세 보기 화면 (단일 일지 조회)
     @GetMapping("journals/{id}")
     public String showJournalDetails(@PathVariable Long id, Model model) {
         Journal journal = journalService.findJournalById(id);
@@ -47,8 +48,15 @@ public class JournalController {
     // 일지 생성
     @PostMapping("/journals/create")
     // @ModelAttribute: HTTP 요청 파라미터와 일치하는 객체를 생성하고, 해당 객체를 메서드의 매개변수로 주입해줌
-    public String createJournal(@ModelAttribute JournalDto journalDto) {
+    public String createJournal(JournalDto journalDto, RedirectAttributes redirectAttributes) {
         Journal created = journalService.create(journalDto);
+
+        if (created == null) {
+            // 생성 실패에 대한 처리 (예: 에러 메시지 추가)
+            redirectAttributes.addFlashAttribute("errorMessage", "Journal creation failed");
+            return "redirect:/journals/create";
+        }
+
         return "redirect:/journals/" + created.getId();
     }
 

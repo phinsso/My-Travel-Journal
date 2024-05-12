@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Journal Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .journal-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .content-box {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>나의 여행 기록</h2>
+
+<div class="journal-details">
+    <div class="detail-section">
+        <span th:text="${journal.title}"></span>
+        <hr style="border-color: #ddd;">
+    </div>
+
+    <div class="detail-section">
+        <img src="/images/icon_location.png" alt="Location Icon" class="icon"><span th:text="${journal.place}"></span>
+    </div>
+
+    <div class="detail-section">
+        <img src="/images/icon_calendar.png" alt="Calendar Icon" class="icon"><span th:text="${journal.startDate} + ' ~ ' + ${journal.endDate}"></span>
+    </div>
+
+    <div class="detail-section">
+        <div class="content-box">
+            <pre><span th:text="${journal.content}"></span></pre>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

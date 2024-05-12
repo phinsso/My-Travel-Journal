@@ -35,8 +35,6 @@ public class Journal {
     @Column
     private String content; // 본문 내용
 
-    @Column
-    private byte[] image; // 이미지
 
     // 일부 데이터 수정 시, 기존 데이터가 날아가는 현상을 방지하기 위한 메서드
     public void patch(Journal journal) {
@@ -50,7 +48,5 @@ public class Journal {
             this.endDate = journal.endDate;
         if(journal.content != null)
             this.content = journal.content;
-        if(journal.image != null)
-            this.image = journal.image;
     }
 }
