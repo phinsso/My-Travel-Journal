@@ -28,6 +28,12 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능한 것처럼 보이도록 함 */
+            transition: box-shadow 0.3s ease; /* 마우스를 올렸을 때 효과를 주기 위한 전환 효과 */
+        }
+
+        .journal:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 마우스를 올렸을 때 그림자 효과를 줌 */
         }
 
         .journal h2 {
@@ -40,24 +46,11 @@
             margin-bottom: 10px;
         }
 
-        .journal .place {
-            font-style: italic;
-            color: #888;
-        }
-
-        .view-details {
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .view-details:hover {
-            background-color: #0056b3;
+        .place-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
         }
 
         .create-link {
@@ -79,10 +72,9 @@
 <h1>나의 여행 일지</h1>
 
 <div class="journal-container">
-    <div th:if="${not #lists.isEmpty(journals)}" th:each="journal : ${journals}" class="journal">
+    <div th:if="${not #lists.isEmpty(journals)}" th:each="journal, iterStat : ${journals}" class="journal" th:href="@{'/journals/' + ${journal.id}}" th:classappend="${iterStat.index % 5 == 0}? 'first-in-row'">
         <h2 th:text="${journal.title}"></h2>
-        <p th:if="${journal.place}" class="place">장소: <span th:text="${journal.place}"></span></p>
-        <a th:href="@{'/journals/' + ${journal.id}}" class="view-details">자세히 보기</a>
+        <p th:if="${journal.place}" class="place"><img src="/images/icon_location.png" alt="Location Icon" class="place-icon"> <span th:text="${journal.place}"></span></p>
     </div>
     <p th:if="${#lists.isEmpty(journals)}">아직 일지가 없어요!</p>
 </div>
