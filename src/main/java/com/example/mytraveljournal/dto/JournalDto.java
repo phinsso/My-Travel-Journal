@@ -23,6 +23,6 @@ public class JournalDto {
     private String content;
 
     public Journal toEntity() {
-        return new Journal(null, title, place, startDate, endDate, content);
+        return new Journal(id, title, place, startDate, endDate, content);
     }
 }

@@ -42,7 +42,7 @@ public class JournalService {
 
         // 잘못된 요청 처리 (대상 엔티티가 없거나, 수정 요청 id와 본문 id가 다를 경우)
         if(target == null || id != journal.getId()) {
-            log.info("잘못된 요청. id: {}, journal: {}", id, journal.toString());
+            log.info("잘못된 요청. id: {}, journal: {}", id, journal.getId());
             return null;
         }
 

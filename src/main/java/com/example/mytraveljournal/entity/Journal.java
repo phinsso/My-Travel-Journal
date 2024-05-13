@@ -32,7 +32,7 @@ public class Journal {
     @Column
     private LocalDate endDate; // 여행 종료일
 
-    @Column
+    @Column(length = 20000)
     private String content; // 본문 내용
 
 

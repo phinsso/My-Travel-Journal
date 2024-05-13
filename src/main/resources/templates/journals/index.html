@@ -65,6 +65,10 @@
         .create-link:hover {
             color: #0056b3;
         }
+
+        .journal-container a {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -72,14 +76,16 @@
 <h1>나의 여행 일지</h1>
 
 <div class="journal-container">
-    <div th:if="${not #lists.isEmpty(journals)}" th:each="journal, iterStat : ${journals}" class="journal" th:href="@{'/journals/' + ${journal.id}}" th:classappend="${iterStat.index % 5 == 0}? 'first-in-row'">
-        <h2 th:text="${journal.title}"></h2>
-        <p th:if="${journal.place}" class="place"><img src="/images/icon_location.png" alt="Location Icon" class="place-icon"> <span th:text="${journal.place}"></span></p>
-    </div>
+    <a th:if="${not #lists.isEmpty(journals)}" th:each="journal, iterStat : ${journals}" th:href="@{'/journals/' + ${journal.id}}" th:classappend="${iterStat.index % 5 == 0}? 'first-in-row'">
+        <div class="journal">
+            <h2 th:text="${journal.title}"></h2>
+            <p th:if="${journal.place}" class="place"><img src="/images/icon_location.png" alt="Location Icon" class="place-icon"> <span th:text="${journal.place}"></span></p>
+        </div>
+    </a>
     <p th:if="${#lists.isEmpty(journals)}">아직 일지가 없어요!</p>
 </div>
 
-<a th:href="@{/journals/create}" class="create-link">여행 기록하러 가기</a>
+<a th:href="@{/journals/create}" class="create-link">여행 일지 쓰러 가기</a>
 
 </body>
 </html>

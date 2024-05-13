@@ -48,11 +48,51 @@
             border-radius: 8px;
             padding: 10px 15px;
         }
+
+        .content-box textarea {
+            width: 100%; /* 부모 요소의 너비에 맞게 너비를 설정합니다. */
+            height: 300px; /* 원하는 높이로 설정합니다. */
+            resize: none; /* 사용자가 크기를 조정할 수 없도록 설정합니다. */
+            border: none; /* 테두리를 제거합니다. */
+            outline: none; /* 포커스 표시를 제거합니다. */
+            background: transparent; /* 배경을 투명하게 설정합니다. */
+            padding: 0; /* 내부 여백을 제거합니다. */
+            font-family: inherit; /* 부모 요소와 동일한 글꼴을 사용합니다. */
+            font-size: inherit; /* 부모 요소와 동일한 글꼴 크기를 사용합니다. */
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-edit {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn:hover {
+            filter: brightness(90%);
+        }
+
     </style>
 </head>
 <body>
 
-<h2 onclick="location.href='/journals'">나의 여행 기록</h2>
+<h2 onclick="location.href='/journals'">나의 여행 일지</h2>
 
 <div class="journal-details">
     <div class="detail-section">
@@ -70,8 +110,15 @@
 
     <div class="detail-section">
         <div class="content-box">
-            <pre><span th:text="${journal.content}"></span></pre>
+            <textarea readonly th:text="${journal.content}"></textarea> <!-- readonly 속성을 추가하여 내용을 편집할 수 없도록 설정 -->
         </div>
+    </div>
+
+    <div class="btn-container">
+        <!-- 수정 버튼 -->
+        <a th:href="@{/journals/edit/{id}(id = ${journal.id})}" class="btn btn-edit">수정</a>
+        <!-- 삭제 버튼 -->
+        <a th:href="@{/journals/delete/{id}(id = ${journal.id})}" class="btn btn-delete">삭제</a>
     </div>
 </div>
 

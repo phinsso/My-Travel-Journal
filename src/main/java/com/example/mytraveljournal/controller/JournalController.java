@@ -61,7 +61,7 @@ public class JournalController {
     }
 
     // 일지 수정 폼 보여주기
-    @GetMapping("journals/{id}/edit")
+    @GetMapping("journals/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         Journal journal = journalService.findJournalById(id);
         model.addAttribute("journal", journal);
@@ -69,14 +69,14 @@ public class JournalController {
     }
 
     // 일지 수정
-    @PostMapping("journals/{id}/edit")
+    @PostMapping("journals/edit/{id}")
     public String editJournal(@PathVariable Long id, @ModelAttribute JournalDto journalDto) {
         Journal updated = journalService.update(id, journalDto);
         return "redirect:/journals/" + updated.getId();
     }
 
     // 일지 삭제 폼 보여주기
-    @GetMapping("journals/{id}/delete")
+    @GetMapping("journals/delete/{id}")
     public String showDeleteForm(@PathVariable Long id, Model model) {
         Journal journal = journalService.delete(id);
         model.addAttribute("journal", journal);
@@ -84,7 +84,7 @@ public class JournalController {
     }
 
     // 일지 삭제
-    @PostMapping("journals/{id}/delete")
+    @PostMapping("journals/delete/{id}")
     public String deleteJournal(@PathVariable Long id) {
         journalService.delete(id);
         return "redirect:/journals";
